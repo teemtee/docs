@@ -7,9 +7,9 @@ to clone repositories or run tmt commands locally.
 
 At the beginning, there was the following user story:
 
-    As a tester, I need to be able to link the test case(s)
-    verifying the issue so that anyone can easily
-    find the tests for the verification.
+> As a tester, I need to be able to link the test case(s)
+> verifying the issue so that anyone can easily
+> find the tests for the verification.
 
 Traceability is an important aspect of the testing process. It is
 essential to have a bi-directional link between test coverage and
