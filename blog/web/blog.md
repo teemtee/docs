@@ -5,9 +5,9 @@ The [tmt web][web] app is a simple web application that makes it
 easy to explore and share test and plan metadata without needing
 to clone repositories or run tmt commands locally.
 
-At the beginning there was the following user story:
+At the beginning, there was the following user story:
 
-    As a tester I need to be able to link the test case(s)
+    As a tester, I need to be able to link the test case(s)
     verifying the issue so that anyone can easily
     find the tests for the verification.
 
@@ -21,7 +21,7 @@ issues covered by it so that we can easily:
 ## Link issue from test
 
 Implementing the first direction in `tmt` was relatively easy:
-Just define a standard way how to store links with their
+Just define a standard way to store links with their
 relations. This is covered by the core [link][link] key which
 holds a list of `relation:link` pairs. Here's an example test
 metadata:
@@ -35,20 +35,20 @@ link:
 
 ## Link test from issue
 
-Solution for the second direction was not that straightforward.
-Thanks to its distributed nature, `tmt` does not have any central
-place where a Jira issue could point to. There is no server which
-keeps information about all tests and stores a unique id number
-for each which could be used in the link.
+The solution for the second direction was not that
+straightforward. Thanks to its distributed nature, `tmt` does not
+have any central place where a Jira issue could point to. There is
+no server which keeps information about all tests and stores a
+unique id number for each which could be used in the link.
 
-Instead of integers we're using the [fmf id][fmf id] as the unique
-identifier.  It contains `url` of the git repository and `name` of
-the test.  Optionally it can also define `ref` instead using the
-default branch and `path` to the `fmf` tree if it's not in the git
-root.
+Instead of integers, we're using the [fmf id][fmf id] as the
+unique identifier. It contains `url` of the git repository and
+`name` of the test. Optionally, it can also define `ref` instead
+of using the default branch and `path` to the `fmf` tree if it's
+not in the git root.
 
-The `tmt web` app accepts fmf id of the test or plan or both,
-clones the git repository, extracts the metadata and returns the
+The `tmt web` app accepts an fmf id of the test or plan or both,
+clones the git repository, extracts the metadata, and returns the
 data in your preferred format:
 
  * HTML for human-readable viewing
@@ -58,13 +58,13 @@ The service is currently available at the following location:
 
  * https://tmt.testing-farm.io/
 
-Here's an example of how the parameters would look like when
+Here's an example of what the parameters would look like when
 requesting information about a test in the default branch of a git
 repository:
 
  * https://tmt.testing-farm.io/?test-url=...&test-name=...
 
-It is possible to link a [test][test], a [plan][plan] or both
+It is possible to link a [test][test], a [plan][plan], or both
 [test and plan][both]. The last option can be useful when a single
 test is executed under several plans. Here's how the human
 readable version looks like:
@@ -73,7 +73,7 @@ readable version looks like:
 
 ## Create new tests
 
-In order to make the linking as smooth as possible the `tmt test
+In order to make the linking as smooth as possible, the `tmt test
 create` command was extended to allow automated linking to Jira
 issues.
 
@@ -105,7 +105,7 @@ tmt link --link verifies:https://issues.redhat.com/browse/TT-206 /tests/core/esc
 ```
 
 If both test and plan should be linked to the issue, provide both
-test and plan as the name
+test and plan as the names:
 
 ```
 tmt link --link verifies:https://issues.redhat.com/browse/TT-206 /tests/core/escaping /plans/features/core
@@ -123,7 +123,7 @@ explore git repositories which are publicly available. For the
 future we consider creating an internal instance in order to be
 able to access internal repositories as well.
 
-We are looking for an early feedback. If you run into any problems
+We are looking for early feedback. If you run into any problems
 or any missing features, please let us know by filing a new
 [issue][issue]. Thanks!
 
