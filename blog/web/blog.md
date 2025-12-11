@@ -92,8 +92,12 @@ When creating a new test, use the `--link` option to provide the
 issue which is covered by the test:
 
 ```
-tmt test create /tests/area/feature --template shell --link verifies:https://issues.redhat.com/browse/TT-206 
+tmt test create /tests/area/feature --template shell --link verifies:https://issues.redhat.com/browse/TT-206
 ```
+
+The link will be added to both test metadata and the Jira issue.
+Just note that the Jira link will be working once you push the
+changes to the remote repository.
 
 ## Link existing objects
 
