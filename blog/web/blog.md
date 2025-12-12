@@ -13,7 +13,7 @@ At the beginning, there was the following user story:
 
 Traceability is an important aspect of the testing process. It is
 essential to have a bi-directional link between test coverage and
-issues covered by it so that we can easily:
+issues covered by those tests so that we can easily:
 
  * identify issues covered by the given test
  * locate tests covering given issues
@@ -21,7 +21,7 @@ issues covered by it so that we can easily:
 ## Link issue from test
 
 Implementing the first direction in `tmt` was relatively easy:
-Just define a standard way to store links with their
+We just defined a standard way to store links with their
 relations. This is covered by the core [link][link] key which
 holds a list of `relation:link` pairs. Here's an example test
 metadata:
@@ -41,7 +41,7 @@ have any central place where a Jira issue could point to. There is
 no server which keeps information about all tests and stores a
 unique id number for each which could be used in the link.
 
-Instead of integers, we're using the [fmf id][fmf id] as the
+Instead of integers, we're using the [fmf id][fmf-id] as the
 unique identifier. It contains `url` of the git repository and
 `name` of the test. Optionally, it can also define `ref` instead
 of using the default branch and `path` to the `fmf` tree if it's
@@ -64,6 +64,12 @@ repository:
 
  * https://tmt.testing-farm.io/?test-url=...&test-name=...
 
+By default, a human-readable HTML version of the output is
+provided to the user. Include the `format` parameter in order to
+choose your preferred format:
+
+ * https://tmt.testing-farm.io/?test-url=...&test-name=...&format=yaml
+
 It is possible to link a [test][test], a [plan][plan], or both
 [test and plan][both]. The last option can be useful when a single
 test is executed under several plans. Here's how the human
@@ -78,7 +84,8 @@ create` command was extended to allow automated linking to Jira
 issues.
 
 First make sure you have the `.config/tmt/link.fmf` config
-prepared:
+prepared. Check the [Link Issues][link-issues] section for more
+details about the configuration.
 
 ```yaml
 issue-tracker:
@@ -121,9 +128,9 @@ This is how the created links would look like in Jira:
 
 ## Closing notes
 
-Currently, as a proof of concept, there is only a single public
-instance of the tmt web app deployed so be aware that it can only
-explore git repositories which are publicly available. For the
+As a proof of concept, for now there is only a single public
+instance of the tmt web app deployed, so be aware that it can only
+explore git repositories that are publicly available. For the
 future we consider creating an internal instance in order to be
 able to access internal repositories as well.
 
@@ -136,7 +143,8 @@ or any missing features, please let us know by filing a new
 [link]: https://tmt.readthedocs.io/en/stable/spec/core.html#link
 [web]: https://github.com/teemtee/web/
 [issue]: https://github.com/teemtee/web/issues/new
-[fmf id]: https://fmf.readthedocs.io/en/stable/concept.html#identifiers
+[fmf-id]: https://fmf.readthedocs.io/en/stable/concept.html#identifiers
+[link-issues]: https://tmt.readthedocs.io/en/stable/guide.html#link-issues
 
 [test]: https://tmt.testing-farm.io/?test-url=https%3A%2F%2Fgithub.com%2Fteemtee%2Ftmt.git&test-name=%2Ftests%2Fcore%2Fescaping&test-ref=main
 [plan]: https://tmt.testing-farm.io/?plan-url=https%3A%2F%2Fgithub.com%2Fteemtee%2Ftmt.git&plan-name=%2Fplans%2Ffeatures%2Fcore&plan-ref=main
